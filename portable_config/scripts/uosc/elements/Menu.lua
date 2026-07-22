@@ -190,6 +190,7 @@ function Menu:destroy()
 		utils.shared_script_property_set('uosc-menu-type', nil)
 	end
 	mp.set_property_native('user-data/uosc/menu/type', nil)
+	mp.set_property_native('user-data/uosc/menu/rect', nil)
 end
 
 ---@param data MenuData
@@ -382,6 +383,11 @@ function Menu:update_dimensions()
 			menu.search and math.min(menu.search.min_top, menu.search.source.top) or height_available,
 			round((height_available - menu.height + title_height) / 2)
 		)
+		-- open-file 菜单：贴左侧、高度铺满播放器上下沿（potplayer 风格）
+		if self.type == 'open-file' then
+			menu.height = max_height
+			menu.top = title_height + margin + self.padding
+		end
 		if menu.search then
 			menu.search.min_top = math.min(menu.search.min_top, menu.top)
 			menu.search.max_width = math.max(menu.search.max_width, menu.width)
@@ -395,11 +401,22 @@ end
 
 -- Updates element coordinates to match padding box of currently open (sub)menu.
 function Menu:update_coordinates()
-	local ax = round((display.width - self.current.width) / 2 - self.padding) + self.offset_x
+	local ax
+	if self.type == 'open-file' then
+		-- open-file 菜单贴左侧显示（与左侧边缘触发配合）
+		ax = round(self.item_height / 2) + self.offset_x
+	else
+		ax = round((display.width - self.current.width) / 2 - self.padding) + self.offset_x
+	end
 	self:set_coordinates(
 		ax, self.current.top - self.padding,
 		ax + self.current.width + self.padding * 2, self.current.top + self.current.height + self.padding
 	)
+	-- 暴露菜单矩形范围到 user-data，供外部脚本（如边缘触发播放列表）查询鼠标是否在菜单内
+	-- 仅写入数据，不改变任何渲染或交互行为
+	mp.set_property_native('user-data/uosc/menu/rect', {
+		ax = self.ax, ay = self.ay, bx = self.bx, by = self.by,
+	})
 end
 
 function Menu:reset_navigation()

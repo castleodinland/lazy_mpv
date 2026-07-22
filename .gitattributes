@@ -1,0 +1,2 @@
+# 强制所有文本文件使用 LF 行尾，避免 Windows 上 autocrlf 导致的 CRLF/LF 混乱
+* text=auto eol=lf
