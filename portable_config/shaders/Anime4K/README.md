@@ -39,23 +39,25 @@ cp Anime4K/glsl/*/*.glsl portable_config/shaders/Anime4K/
 
 ## 按键绑定
 
+> **重要**：mpv 中 `Ctrl+数字` 与 `Ctrl+Shift+数字` 实际是同一物理键（数字键的 keyname 在 mpv 中会被标准化为带 Shift 的版本），会导致绑定互相覆盖。因此模式绑定使用 `Ctrl+Alt+数字`（Alt 与 Shift 是不同 modifier，不冲突），单着色器保留原有的 `Ctrl+5/6`。
+
 ### 预设模式（一键切换，`set` 替换整个着色器链）
 
 | 按键 | 模式 | 适用场景 | 着色器组合 |
 |------|------|---------|-----------|
-| `Ctrl+Shift+1` | Mode A (HQ) | 1080p 动画 | Clamp + Restore_CNN_VL + Upscale_CNN_x2_VL + AutoDownscale×2/×4 + Upscale_CNN_x2_M |
-| `Ctrl+Shift+2` | Mode B (HQ) | 720p 动画 | Clamp + Restore_CNN_Soft_VL + Upscale_CNN_x2_VL + AutoDownscale×2/×4 + Upscale_CNN_x2_M |
-| `Ctrl+Shift+3` | Mode C (HQ) | 480p 动画 | Clamp + Upscale_Denoise_CNN_x2_VL + AutoDownscale×2/×4 + Upscale_CNN_x2_M |
-| `Ctrl+Shift+4` | Mode A+A (HQ) | 双重重建 | Mode A + Restore_CNN_M |
-| `Ctrl+Shift+5` | Mode B+B (HQ) | 双重重建 | Mode B + Restore_CNN_Soft_M |
-| `Ctrl+Shift+6` | Mode C+A (HQ) | 降噪+重建 | Mode C + Restore_CNN_M |
+| `Ctrl+Alt+1` | Mode A (HQ) | 1080p 动画 | Clamp + Restore_CNN_VL + Upscale_CNN_x2_VL + AutoDownscale×2/×4 + Upscale_CNN_x2_M |
+| `Ctrl+Alt+2` | Mode B (HQ) | 720p 动画 | Clamp + Restore_CNN_Soft_VL + Upscale_CNN_x2_VL + AutoDownscale×2/×4 + Upscale_CNN_x2_M |
+| `Ctrl+Alt+3` | Mode C (HQ) | 480p 动画 | Clamp + Upscale_Denoise_CNN_x2_VL + AutoDownscale×2/×4 + Upscale_CNN_x2_M |
+| `Ctrl+Alt+4` | Mode A+A (HQ) | 双重重建 | Mode A + Restore_CNN_M |
+| `Ctrl+Alt+5` | Mode B+B (HQ) | 双重重建 | Mode B + Restore_CNN_Soft_M |
+| `Ctrl+Alt+6` | Mode C+A (HQ) | 降噪+重建 | Mode C + Restore_CNN_M |
 
 ### 单着色器开关（`toggle`，可自由组合）
 
 | 按键 | 着色器 | 说明 |
 |------|--------|------|
-| `Ctrl+5` | `Anime4K_Restore_CNN_L.glsl` | A4K 重建（单个） |
-| `Ctrl+6` | `Anime4K_Upscale_GAN_x2_M.glsl` | A4K 放大（单个） |
+| `Ctrl+5` | `Anime4K_Restore_CNN_L.glsl` | A4K 重建（单个，带 OSD 提示） |
+| `Ctrl+6` | `Anime4K_Upscale_GAN_x2_M.glsl` | A4K 放大（单个，带 OSD 提示） |
 
 ### 清空
 

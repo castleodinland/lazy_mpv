@@ -21,8 +21,8 @@
 
 本项目集成了 [Anime4K](https://github.com/bloc97/Anime4K) v4.x 动画着色器（49 个 glsl 文件），通过快捷键一键切换预设模式：
 
-- Ctrl+Shift+1/2/3：Mode A/B/C（1080p/720p/480p 优化）
-- Ctrl+Shift+4/5/6：Mode A+A/B+B/C+A（双重重建）
+- Ctrl+Alt+1/2/3：Mode A/B/C（1080p/720p/480p 优化）
+- Ctrl+Alt+4/5/6：Mode A+A/B+B/C+A（双重重建）
 - Ctrl+5/6：单着色器开关（重建/放大）
 - Ctrl+反引号：清空所有着色器
 
