@@ -12,6 +12,12 @@ import shutil
 import subprocess
 import sys
 
+# GitHub Actions 的 Windows runner 默认 stdout 编码为 cp1252，输出中文会抛 UnicodeEncodeError。
+# 强制切换为 UTF-8，本地与 CI 行为一致。
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
+    sys.stderr.reconfigure(encoding="utf-8")
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STAGE = os.path.join(ROOT, "release", "stage")
 OUT = os.path.join(ROOT, "release")
