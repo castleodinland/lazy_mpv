@@ -6,7 +6,9 @@
 
 本仓库是个人使用的配置存档与定制版本，主要用于记录和同步自己的快捷键、滤镜、着色器等设置。
 
-配置文件位于 `portable_config/` 目录，其中输入配置为 `input_uosc.conf`。文本文件统一使用 **UTF-8** 编码、**LF** 换行。
+配置文件位于 `portable_config/` 目录，其中输入配置为 `input_uosc.conf`。文本文件统一使用 **UTF-8** 编码、**LF** 换行；`installer/*.bat` 因 Windows 命令行兼容性使用 ANSI/GBK 编码。
+
+音量与静音状态由 `save_global_props` 跨会话记忆，保存在 `portable_config/saved-props.json`。该文件中的值会覆盖 `mpv.conf` 的 `volume` 设置；修改配置中的音量后，需按 `Ctrl+r` 清除记录（或删除该缓存文件）并重启 mpv，新值才会生效。
 
 ## 致谢
 
@@ -40,10 +42,12 @@
 | `!` (Shift+1) | 补帧 MVTools 快速 | 基于 MVTools 的光流补帧，速度快、质量中 |
 | `@` (Shift+2) | 补帧 RIFE DX12 | 基于 RIFE 的 AI 补帧，DirectX12 后端 |
 | `#` (Shift+3，键名 SHARP) | 补帧 DRBA DX12 | 基于 DRBA 的 AI 补帧，DirectX12 后端 |
-| `$` (Shift+4) | 补帧 RIFE RTX | RIFE 补帧，NVIDIA TensorRT 后端（需 RTX 显卡） |
-| `%` (Shift+5) | 补帧 DRBA RTX | DRBA 补帧，NVIDIA TensorRT 后端（需 RTX 显卡） |
+| `$` (Shift+4) | 补帧 RIFE RTX | RIFE 补帧，NVIDIA TensorRT 后端（需 RTX 显卡 + DLC-vsNV，未随包提供） |
+| `%` (Shift+5) | 补帧 DRBA RTX | DRBA 补帧，NVIDIA TensorRT 后端（需 RTX 显卡 + DLC-vsNV，未随包提供） |
 | `^` (Shift+6) | 自定义AI UAI DX12 | 自定义 AI 画质处理，DirectX12 后端 |
-| `&` (Shift+7) | 自定义AI UAI RTX | 自定义 AI 画质处理，NVIDIA TensorRT 后端 |
+| `&` (Shift+7) | 自定义AI UAI RTX | 自定义 AI 画质处理，NVIDIA TensorRT 后端（需 RTX 显卡 + DLC-vsNV，未随包提供） |
+
+> `$` / `%` / `&` 依赖原项目的 DLC-vsNV 扩展（`vs/MEMC_RIFE_NV.vpy`、`vs/MEMC_DRBA_NV.vpy`、`vs/MIX_UAI_NV_TRT.vpy`）。本包未包含这三个文件，直接调用会失败；需要时请先按原项目文档安装 DLC。
 
 ### GLSL 着色器
 

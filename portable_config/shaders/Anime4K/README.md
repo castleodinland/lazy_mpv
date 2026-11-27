@@ -67,7 +67,7 @@ cp Anime4K/glsl/*/*.glsl portable_config/shaders/Anime4K/
 
 ## OSD 启动提示
 
-每个预设模式绑定都包含 `show-text` 命令，切换时会在屏幕上显示 3 秒提示，例如：
+每个预设模式绑定都包含 `show-text` 命令，切换时会在屏幕上显示 5 秒提示，例如：
 
 ```
 Anime4K: Mode A (HQ) 已启动 - 1080p优化
@@ -88,7 +88,7 @@ Anime4K: Mode A (HQ) 已启动 - 1080p优化
 ## 测试验证
 
 已通过端到端测试（mpv + lavfi 测试视频 + 模拟按键）：
-- `Ctrl+Shift+1` → 成功加载 6 个 Mode A 着色器 ✓
+- `Ctrl+Alt+1` → 成功加载 6 个 Mode A 着色器 ✓
 - `Ctrl+`` → 成功清空所有着色器 ✓
 - OSD 提示命令已嵌入绑定，实际播放时会显示 ✓
 

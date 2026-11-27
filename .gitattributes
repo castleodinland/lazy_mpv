@@ -1,2 +1,8 @@
 # 强制所有文本文件使用 LF 行尾，避免 Windows 上 autocrlf 导致的 CRLF/LF 混乱
 * text=auto eol=lf
+
+# 大文件说明：exe/dll/pyd/onnx/zip 等二进制约 266 MB，目前全量入库（.git 约 164 MB）。
+# 如需迁移到 Git LFS，请先确认远端支持并备份仓库，再执行：
+#   git lfs install
+#   git lfs migrate import --include="*.exe,*.dll,*.pyd,*.onnx,*.zip" --everything
+# 注意：migrate 会重写全部提交历史，执行后所有协作者需重新克隆。
